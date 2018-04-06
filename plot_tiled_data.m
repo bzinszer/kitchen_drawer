@@ -4,6 +4,11 @@ function plot_tiled_data(data_array,type,titletext,xlabtext)
 display_dims = get(0,'MonitorPosition');
 num_panels = size(data_array,ndims(data_array));
 
+% If multiple displays, select primary display
+if size(display_dims,1)>1, display_dims = display_dims(1,:); end
+
+% Figure out the best-ish vertical-to-horizontal ratio to lay out the 
+% subplots based on the size of the display
 vert_tiles = ceil(sqrt(num_panels / (display_dims(3)/display_dims(4))));
 horiz_tiles = ceil(num_panels / vert_tiles);
 
